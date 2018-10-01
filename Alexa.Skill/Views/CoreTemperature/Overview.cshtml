@@ -1,0 +1,38 @@
+﻿@model CoreTemperatureOverviewViewModel
+
+@{
+    ViewBag.Title = "Overview";
+}
+
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.SkillId })
+}
+@section MainMenu{
+	@Html.Action("MainMenu", "Home", new { skillId = Model.SkillId })
+}
+
+<h2>Overview</h2>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (CoreTemperatureOverviewItemViewModel coreTemperature in Model.CoreTemperatures)
+		{
+			<tr>
+				<td>@coreTemperature.Name</td>
+				<td class="text-right">
+					<a href="@Url.Action("EditTemperature", "CoreTemperature", new { skillId = Model.SkillId, temperatureId = coreTemperature.Id})" class="btn btn-success" style="margin-bottom:5px;">Bearbeiten</a>
+					<a href="@Url.Action("EditTemperatureCalls", "CoreTemperature", new { skillId = Model.SkillId, temperatureId = coreTemperature.Id})" class="btn btn-success" style="margin-bottom:5px;">Aufrufe</a>
+				</td>
+			</tr>
+		}
+
+	</tbody>
+</table>
+
+<a href="@Url.Action("EditTemperature", "CoreTemperature", new { skillId = Model.SkillId})" class="btn btn-success">Anlegen</a>

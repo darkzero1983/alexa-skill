@@ -1,0 +1,43 @@
+﻿@model SkillWelcomeMessagesOverviewViewModel
+
+@{
+	ViewBag.Title = "Welcome Messages";
+	string borderStyles = "";
+}
+
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.SkillId })
+}
+@section MainMenu{
+	@Html.Action("MainMenu", "Home", new { skillId = Model.SkillId })
+}
+
+<h2>Welcome Messages</h2>
+
+<hr />
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-success ">
+			<div class="panel-heading">Mitteilungen</div>
+			@foreach (MessageOverviewItemViewModel message in Model.Messages)
+			{
+				<div class="panel-body" style="@borderStyles">
+
+					<div class="row">
+						<div class="col-md-9">@message.Message</div>
+						<div class="col-md-3">
+							<div class="row text-right" style="margin:10px 0;">
+								<a href="@Url.Action("Edit", "WelcomeMessage", new { id = message.MessageId})" class="btn btn-info">Bearbeiten</a>
+								<a href="@Url.Action("DeleteConfirm", "WelcomeMessage", new { id = message.MessageId})" class="btn btn-danger">Löschen</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				borderStyles = "border-top:1px solid #ddd";
+			}
+			<div class="panel-body text-right" style="border-top:1px solid #ddd">
+				<a href="@Url.Action("Add", "WelcomeMessage", new { id = Model.SkillId})" class="btn btn-success">Neue erstellen</a>
+			</div>
+		</div>
+	</div>
+</div>

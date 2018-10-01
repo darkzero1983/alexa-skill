@@ -1,0 +1,23 @@
+﻿@model MessageEditViewModel
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.SkillId })
+}
+@section MainMenu{
+	@Html.Action("MainMenu", "Home", new { skillId = Model.SkillId })
+}
+<h2>Meldung löschen</h2>
+<hr />
+<div class="row">
+	<div class="col-md-12">
+		<strong>Wollen Sie die Nachricht wirklich löschen?</strong><br /><br />
+		@Model.Message
+		<hr />
+		
+		<a href="@Url.Action("Delete", "Message", new { id = Model.MessageId})" class="btn btn-danger">Löschen</a>
+		<a href="@Url.Action("Messages", "Intent", new { id = Model.IntentId})" class="btn btn-info">Abbrechen</a>
+	</div>
+</div>

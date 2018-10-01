@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+	<title>@ViewBag.Title</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@RenderSection("SkillNameMenu", required: false)
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					@RenderSection("MainMenu", required: false)
+					
+				</ul>
+
+				@if (User.Identity.IsAuthenticated)
+				{
+					using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+					{
+						@Html.AntiForgeryToken()
+
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="javascript:document.getElementById('logoutForm').submit()">Ausloggen</a></li>
+						</ul>
+					}
+				}
+				else
+				{
+					<ul class="nav navbar-nav navbar-right">
+
+						<li>@Html.ActionLink("Einloggen", "Login", "Account")</li>
+						<li>@Html.ActionLink("Registrieren", "Register", "Account")</li>
+					</ul>
+				}
+</div>
+	</div>
+</div>
+<div class="container body-content" style="padding-top:20px;">
+	@RenderBody()
+</div>
+
+
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

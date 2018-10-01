@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8318737ab2b497f89f722f88c5a0fd7" Name="Diagram1">
+        <EntityTypeShape EntityType="AlexaSkill.Answer" Width="1.5" PointX="9.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.CoreTemperature" Width="1.5" PointX="9.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.Meat" Width="1.5" PointX="12" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.C__MigrationHistory" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.AspNetRole" Width="1.5" PointX="7.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.AspNetUser" Width="1.5" PointX="10" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.ExitMessage" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.HelpMessage" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.IntentCall" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.IntentMessage" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.IntentMessagesRead" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.Intent" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.RequestLog" Width="1.5" PointX="13.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.Skill" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.SkillType" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.WelcomeMessage" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlexaSkill.WelcomeMessagesRead" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="AlexaSkill.FK_Meats_Answers" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_Meats_CoreTemperatures" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_ExitMessages_Skills" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_HelpMessages_Skills" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_IntentCall_Intents" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_IntentMessages_Intent" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_IntentMessagesReads_IntentMessages" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_Intent_Skills" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_WelcomeMessages_Skills" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.FK_WelcomeMessagesReads_WelcomeMessages" ManuallyRouted="false" />
+        <AssociationConnector Association="AlexaSkill.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,47 @@
+﻿@using Alexa.Skill.Models.Home
+@model HomeViewModel
+
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = 0 })
+}
+
+<div class="row">
+	@foreach (SkillOverviewItem skill in Model.Skills)
+	{
+		<div class="col-md-4">
+			<div class="panel panel-success ">
+				<div class="panel-heading">@skill.Name</div>
+				<div class="panel-body">
+					Gesamt:
+					<div class="row">
+						<div class="col-md-3 col-xs-3"><strong>Aufrufe:</strong></div><div class="col-md-3 col-xs-3">@skill.UsageCount</div>
+						<div class="col-md-3 col-xs-3"><strong>User:</strong></div><div class="col-md-3 col-xs-3">@skill.UserCount</div>
+					</div>
+					<hr />
+					Letzte 24h:
+					<div class="row">
+						<div class="col-md-3 col-xs-3"><strong>Aufrufe:</strong></div><div class="col-md-3 col-xs-3">@skill.UsageCount24h</div>
+						<div class="col-md-3 col-xs-3"><strong>User:</strong></div><div class="col-md-3 col-xs-3">@skill.UserCount24h</div>
+					</div>
+				</div>
+				<div class="panel-body text-right" style="border-top:1px solid #ddd">
+					<a href="@Url.Action("Detail", "Skill", new { id = skill.Id})" class="btn btn-success">Bearbeiten</a>
+				</div>
+			</div>
+		</div>
+	}
+	
+
+	<div class="col-md-4">
+		<div class="panel panel-info ">
+			<div class="panel-heading">Skill erstellen</div>
+			<a href="@Url.Action("Add","Skill")">
+				<div class="panel-body text-center" style="font-size:50px;">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
+
+

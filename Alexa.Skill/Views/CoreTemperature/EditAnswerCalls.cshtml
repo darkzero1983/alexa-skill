@@ -1,0 +1,45 @@
+﻿@model AnswerCallViewModel
+
+@{
+    ViewBag.Title = "EditTemperatureCalls";
+}
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.SkillId })
+}
+
+<h2>@Model.Answer - Aufrufe</h2>
+<hr />
+
+<a href="@Url.Action("AnswerOverview", "CoreTemperature", new { skillId = Model.SkillId})" class="btn btn-default" style="margin-bottom:5px;">Zurück</a>
+
+<table class="table">
+	<tr>
+		<th>
+			Aufruf
+		</th>
+	</tr>
+	@foreach (AnswerCallItemViewModel call in Model.Calls)
+	{
+		<tr>
+			<td>@call.Name</td>
+		</tr>
+	}
+</table>
+
+@using (Html.BeginForm("EditAnswerCalls", "CoreTemperature", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", style = "padding-top:30px;" }))
+{
+	@Html.HiddenFor(x => x.SkillId)
+	@Html.HiddenFor(x => x.AnswerId)
+	<div class="form-group">
+		@Html.LabelFor(x => x.AddCallName, new { @class = "col-sm-2 control-label" })
+		<div class="col-sm-10">
+			@Html.TextBoxFor(x => x.AddCallName, new { @class = "form-control" })
+			@Html.ValidationMessageFor(x => x.AddCallName)
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-success">Erstellen</button>
+		</div>
+	</div>
+}

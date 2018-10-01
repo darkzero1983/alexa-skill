@@ -1,0 +1,41 @@
+﻿@using Alexa.Skill.Models.Intents
+@model IntentOverviewViewModel
+
+@{
+    ViewBag.Title = "Intents";
+}
+
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.SkillId })
+}
+@section MainMenu{
+	@Html.Action("MainMenu", "Home", new { skillId = Model.SkillId })
+}
+
+<h2>Intents</h2>
+<hr />
+<div class="row">
+	@foreach (IntentItemViewModel intent in Model.Intents)
+	{
+		<div class="col-md-4">
+			<div class="panel panel-success ">
+				<div class="panel-heading"><strong>@intent.Name</strong></div>
+				<div class="panel-body text-right" style="border-top:1px solid #ddd">
+					<a href="@Url.Action("Detail", "Intent", new { id = intent.Id})" class="btn btn-success">Details</a>
+					<a href="@Url.Action("Edit", "Intent", new { id = intent.Id})" class="btn btn-default">Bearbeiten</a>
+				</div>
+			</div>
+		</div>
+	}
+
+	<div class="col-md-4">
+		<div class="panel panel-info ">
+			<div class="panel-heading">Intent erstellen</div>
+			<a href="@Url.Action("Add","Intent", new { id = Model.SkillId})">
+				<div class="panel-body text-center" style="font-size:50px;">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

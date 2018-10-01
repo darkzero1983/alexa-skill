@@ -1,0 +1,100 @@
+﻿@model StatisitcViewModel
+
+@{
+    ViewBag.Title = "Index";
+	string delimiter = "";
+}
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.SkillId })
+}
+
+@section MainMenu{
+	@Html.Action("MainMenu", "Home", new { skillId = Model.SkillId })
+}
+<h2>Letzten 20 Requests</h2>
+<script src="~/Scripts/highcharts.js"></script>
+<div id="container" style="width:100%;height:300px;"></div>
+<script>
+	Highcharts.chart('container', {
+		chart: {
+			type: 'line'
+		},
+		tooltip: {
+
+			shared: true
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: 'Skill Abfragen'
+		},
+		yAxis: {
+			title: {
+				enabled: false
+			}
+		},
+		xAxis: {
+			type: 'datetime'
+		},
+		series: [{
+			name: 'Anfragen',
+			data: [
+				@foreach (ChartPoint chartRequest in Model.ChartRequests)
+				{
+					@Html.Raw(String.Format("{0}[Date.UTC({1},{2},{3}),{4}]", delimiter, chartRequest.Date.Year, chartRequest.Date.Month - 1, chartRequest.Date.Day, chartRequest.Value))
+					delimiter = ",";
+				}
+			]
+		},
+		@{ 
+			delimiter = "";
+		}
+		{
+			name: 'User',
+			data: [
+				@foreach (ChartPoint chartUser in Model.ChartUsers)
+				{
+					@Html.Raw(String.Format("{0}[Date.UTC({1},{2},{3}),{4}]", delimiter, chartUser.Date.Year, chartUser.Date.Month - 1, chartUser.Date.Day, chartUser.Value))
+					delimiter = ",";
+				}
+			]
+		}]
+	});
+</script>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Zeit</th>
+			<th>Typ</th>
+			<th>Intent</th>
+			<th>Parameter</th>
+			<th>Rückgabe</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (RequestLogViewModel log in Model.RequestLogs)
+		{
+			<tr>
+				<td>@String.Format("{0:dd.MM.yyyy HH:mm:ss}", log.RequestTime)</td>
+				<td>@log.RequestType</td>
+				<td>@log.Intent</td>
+				<td>@log.IntentParam</td>
+				<td>@log.Information</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<br />
+
+@using (Html.BeginForm("Index", "Statistic", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", style = "padding-top:30px;", id="filterStatisticForm" }))
+{
+	@Html.HiddenFor(x => x.SkillId)
+	<div class="form-group">
+		@Html.LabelFor(x => x.Settings.RequestCounts, new { @class = "col-sm-2 control-label" })
+		<div class="col-sm-10">
+			@Html.DropDownListFor(model => model.Settings.RequestCounts, Model.Settings.RequestCountOptions, new { @class = "form-control", onchange = "$('#filterStatisticForm').submit()" })
+		</div>
+	</div>
+}

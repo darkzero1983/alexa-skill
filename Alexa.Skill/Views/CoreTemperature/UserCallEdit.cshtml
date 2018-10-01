@@ -1,0 +1,40 @@
+﻿@model UserCallEditViewModel
+
+@{
+	ViewBag.Title = "User Aufruf bearbeiten";
+}
+
+<h2>User Aufruf bearbeiten</h2>
+<hr />
+
+@using (Html.BeginForm("UserCallEdit", "CoreTemperature", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", style = "padding-top:30px;" }))
+{
+	@Html.HiddenFor(x => x.SkillId)
+	@Html.HiddenFor(x => x.UserCallId)
+	<div class="form-group">
+		@Html.LabelFor(x => x.UserCallName, new { @class = "col-sm-2 control-label" })
+		<div class="col-sm-10">
+			@Html.TextBoxFor(x => x.UserCallName, new { @class = "form-control" })
+			@Html.ValidationMessageFor(x => x.UserCallName)
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(x => x.AnswerId, new { @class = "col-sm-2 control-label" })
+		<div class="col-sm-10">
+			@Html.DropDownListFor(model => model.AnswerId, Model.Answers, new { @class = "form-control" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(x => x.CoreTemperatureId, new { @class = "col-sm-2 control-label" })
+		<div class="col-sm-10">
+			@Html.DropDownListFor(model => model.CoreTemperatureId, Model.CoreTemperatures, new { @class = "form-control" })
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-success">erstellen</button>
+		</div>
+	</div>
+}

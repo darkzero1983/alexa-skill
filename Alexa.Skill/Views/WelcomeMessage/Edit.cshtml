@@ -1,0 +1,35 @@
+﻿@model WelcomeMessageEditViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.SkillId })
+}
+@section MainMenu{
+	@Html.Action("MainMenu", "Home", new { skillId = Model.SkillId })
+}
+
+<h2>Willkommen Mittelung bearbeiten</h2>
+
+@using (Html.BeginForm("Edit", "WelcomeMessage", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", style = "padding-top:30px;" }))
+{
+	@Html.HiddenFor(x => x.MessageId)
+	@Html.HiddenFor(x => x.SkillId)
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-success ">
+				<div class="panel-heading">Mitteilung</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12">
+							@Html.TextAreaFor(x => x.Message, new { @class = "form-control", rows = "6", style = "border:none;" })
+						</div>
+					</div>
+				</div>
+				<div class="panel-body text-right" style="border-top:1px solid #ddd">
+					<input type="submit" href="@Url.Action("Detail", "Skill", new { id = Model.MessageId })" class="btn btn-success" value="Speichern">
+				</div>
+			</div>
+		</div>
+	</div>
+}

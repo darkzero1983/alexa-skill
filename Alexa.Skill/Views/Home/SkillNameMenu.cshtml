@@ -1,0 +1,10 @@
+﻿@model SkillNameMenuViewModel
+
+@if (String.IsNullOrEmpty(Model.SkillName))
+{
+	@Html.ActionLink("Alexa Skills", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+}
+else
+{
+	@Html.ActionLink(Model.SkillName, "Detail", "Skill", new { id = Model.SkillId }, new { @class = "navbar-brand" })
+}

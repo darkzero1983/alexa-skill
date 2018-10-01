@@ -1,0 +1,64 @@
+﻿@model UserCallOverviewViewModel
+
+@{
+	ViewBag.Title = "User Aufrufe";
+}
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.SkillId })
+}
+
+@section MainMenu{
+	@Html.Action("MainMenu", "Home", new { skillId = Model.SkillId })
+}
+
+<h2>User Aufrufe</h2>
+<hr />
+<div class="row">
+	<div class="col-md-2">
+		<a href="@Url.Action("UserCallEdit", "CoreTemperature", new { skillId = Model.SkillId})" class="btn btn-success" style="margin-bottom:5px;">Erstellen</a>
+	</div>
+	<div class="col-md-10">
+		@using (Html.BeginForm("UserCallOverview", "CoreTemperature", FormMethod.Get, htmlAttributes: new { @class = "form-horizontal", style = "padding-top:30px;", id = "filterForm" }))
+		{
+			@Html.HiddenFor(x => x.SkillId)
+			<div class="col-md-5">
+				<div class="form-group">
+					@Html.LabelFor(x => x.CoreTemperatureId, new { @class = "col-sm-4 control-label" })
+					<div class="col-sm-8">
+						@Html.DropDownListFor(model => model.CoreTemperatureId, Model.CoreTemperatures, new { @class = "form-control", onchange = "$('#filterForm').submit();" })
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					@Html.LabelFor(x => x.AnswerId, new { @class = "col-sm-4 control-label" })
+					<div class="col-sm-8">
+						@Html.DropDownListFor(model => model.AnswerId, Model.Answers, new { @class = "form-control", onchange = "$('#filterForm').submit();" })
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+
+	<table class="table table-striped">
+		<tr>
+			<th>Aufruf</th>
+			<th>Kerntemperatur</th>
+			<th>Antwort</th>
+			<th>&nbsp;</th>
+		</tr>
+		@foreach (UserCallViewModel userCall in Model.UserCalls)
+		{
+			<tr>
+				<td>@userCall.UserCallName</td>
+				<td>@userCall.CoreTemeratureName</td>
+				<td>@userCall.AnswerText</td>
+				<td>
+					<a href="@Url.Action("UserCallEdit", "CoreTemperature", new { skillId = Model.SkillId, userCallId = userCall.UserCallId})" class="btn btn-success" style="margin-bottom:5px;">Bearbeiten</a>
+					<a href="@Url.Action("UserCallDelete", "CoreTemperature", new { skillId = Model.SkillId, userCallId = userCall.UserCallId})" class="btn btn-danger" style="margin-bottom:5px;">Löschen</a>
+				</td>
+			</tr>
+		}
+	</table>

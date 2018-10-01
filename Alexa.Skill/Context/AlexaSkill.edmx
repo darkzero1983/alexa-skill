@@ -1,0 +1,1146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlexaSkill.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Answert" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SessionTerm" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShouldEndSession" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoreTemperatures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefaultDegree" Type="int" />
+          <Property Name="DefaultMinDegree" Type="int" />
+          <Property Name="DefaultMaxDegree" Type="int" />
+          <Property Name="RareDegree" Type="int" />
+          <Property Name="RareMinDegree" Type="int" />
+          <Property Name="RareMaxDegree" Type="int" />
+          <Property Name="MediumDegree" Type="int" />
+          <Property Name="MediumMinDegree" Type="int" />
+          <Property Name="MediumMaxDegree" Type="int" />
+          <Property Name="DoneDegree" Type="int" />
+          <Property Name="DoneMinDegree" Type="int" />
+          <Property Name="DoneMaxDegree" Type="int" />
+        </EntityType>
+        <EntityType Name="Meats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CoreTemperatureId" Type="int" />
+          <Property Name="AnswerId" Type="int" />
+        </EntityType>
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExitMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HelpMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IntentCall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IntentId" Type="int" Nullable="false" />
+          <Property Name="CallText" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IntentMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IntentId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IntentMessagesReads">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IntentMessageId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ReadSecond" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Intents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShouldEndSession" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestTime" Type="datetime" Nullable="false" />
+          <Property Name="ApplicationId" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="RequestType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Intent" Type="nvarchar" MaxLength="100" />
+          <Property Name="IntentParam" Type="nvarchar" MaxLength="100" />
+          <Property Name="Information" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationID" Type="nvarchar" MaxLength="60" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="SkillType" Type="int" />
+        </EntityType>
+        <EntityType Name="SkillTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="WelcomeMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WelcomeMessagesReads">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WelcomeMessageId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ReadSecond" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExitMessages_Skills">
+          <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
+          <End Role="ExitMessages" Type="Self.ExitMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExitMessages">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HelpMessages_Skills">
+          <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
+          <End Role="HelpMessages" Type="Self.HelpMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HelpMessages">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Intent_Skills">
+          <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
+          <End Role="Intents" Type="Self.Intents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intents">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IntentCall_Intents">
+          <End Role="Intents" Type="Self.Intents" Multiplicity="1" />
+          <End Role="IntentCall" Type="Self.IntentCall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IntentCall">
+              <PropertyRef Name="IntentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IntentMessages_Intent">
+          <End Role="Intents" Type="Self.Intents" Multiplicity="1" />
+          <End Role="IntentMessages" Type="Self.IntentMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IntentMessages">
+              <PropertyRef Name="IntentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IntentMessagesReads_IntentMessages">
+          <End Role="IntentMessages" Type="Self.IntentMessages" Multiplicity="1" />
+          <End Role="IntentMessagesReads" Type="Self.IntentMessagesReads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IntentMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IntentMessagesReads">
+              <PropertyRef Name="IntentMessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meats_Answers">
+          <End Role="Answers" Type="Self.Answers" Multiplicity="0..1" />
+          <End Role="Meats" Type="Self.Meats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meats">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meats_CoreTemperatures">
+          <End Role="CoreTemperatures" Type="Self.CoreTemperatures" Multiplicity="0..1" />
+          <End Role="Meats" Type="Self.Meats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoreTemperatures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meats">
+              <PropertyRef Name="CoreTemperatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WelcomeMessages_Skills">
+          <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
+          <End Role="WelcomeMessages" Type="Self.WelcomeMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WelcomeMessages">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WelcomeMessagesReads_WelcomeMessages">
+          <End Role="WelcomeMessages" Type="Self.WelcomeMessages" Multiplicity="1" />
+          <End Role="WelcomeMessagesReads" Type="Self.WelcomeMessagesReads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WelcomeMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WelcomeMessagesReads">
+              <PropertyRef Name="WelcomeMessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlexaSkillStoreContainer">
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="CoreTemperature" store:Type="Tables" />
+          <EntitySet Name="CoreTemperatures" EntityType="Self.CoreTemperatures" Schema="CoreTemperature" store:Type="Tables" />
+          <EntitySet Name="Meats" EntityType="Self.Meats" Schema="CoreTemperature" store:Type="Tables" />
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExitMessages" EntityType="Self.ExitMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HelpMessages" EntityType="Self.HelpMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IntentCall" EntityType="Self.IntentCall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IntentMessages" EntityType="Self.IntentMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IntentMessagesReads" EntityType="Self.IntentMessagesReads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Intents" EntityType="Self.Intents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestLog" EntityType="Self.RequestLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkillTypes" EntityType="Self.SkillTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WelcomeMessages" EntityType="Self.WelcomeMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WelcomeMessagesReads" EntityType="Self.WelcomeMessagesReads" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExitMessages_Skills" Association="Self.FK_ExitMessages_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="ExitMessages" EntitySet="ExitMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HelpMessages_Skills" Association="Self.FK_HelpMessages_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="HelpMessages" EntitySet="HelpMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Intent_Skills" Association="Self.FK_Intent_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="Intents" EntitySet="Intents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IntentCall_Intents" Association="Self.FK_IntentCall_Intents">
+            <End Role="Intents" EntitySet="Intents" />
+            <End Role="IntentCall" EntitySet="IntentCall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IntentMessages_Intent" Association="Self.FK_IntentMessages_Intent">
+            <End Role="Intents" EntitySet="Intents" />
+            <End Role="IntentMessages" EntitySet="IntentMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IntentMessagesReads_IntentMessages" Association="Self.FK_IntentMessagesReads_IntentMessages">
+            <End Role="IntentMessages" EntitySet="IntentMessages" />
+            <End Role="IntentMessagesReads" EntitySet="IntentMessagesReads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meats_Answers" Association="Self.FK_Meats_Answers">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="Meats" EntitySet="Meats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meats_CoreTemperatures" Association="Self.FK_Meats_CoreTemperatures">
+            <End Role="CoreTemperatures" EntitySet="CoreTemperatures" />
+            <End Role="Meats" EntitySet="Meats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WelcomeMessages_Skills" Association="Self.FK_WelcomeMessages_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="WelcomeMessages" EntitySet="WelcomeMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WelcomeMessagesReads_WelcomeMessages" Association="Self.FK_WelcomeMessagesReads_WelcomeMessages">
+            <End Role="WelcomeMessages" EntitySet="WelcomeMessages" />
+            <End Role="WelcomeMessagesReads" EntitySet="WelcomeMessagesReads" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlexaSkill" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Answert" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SessionTerm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShouldEndSession" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Meats" Relationship="Self.FK_Meats_Answers" FromRole="Answers" ToRole="Meats" />
+        </EntityType>
+        <EntityType Name="CoreTemperature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DefaultDegree" Type="Int32" />
+          <Property Name="DefaultMinDegree" Type="Int32" />
+          <Property Name="DefaultMaxDegree" Type="Int32" />
+          <Property Name="RareDegree" Type="Int32" />
+          <Property Name="RareMinDegree" Type="Int32" />
+          <Property Name="RareMaxDegree" Type="Int32" />
+          <Property Name="MediumDegree" Type="Int32" />
+          <Property Name="MediumMinDegree" Type="Int32" />
+          <Property Name="MediumMaxDegree" Type="Int32" />
+          <Property Name="DoneDegree" Type="Int32" />
+          <Property Name="DoneMinDegree" Type="Int32" />
+          <Property Name="DoneMaxDegree" Type="Int32" />
+          <NavigationProperty Name="Meats" Relationship="Self.FK_Meats_CoreTemperatures" FromRole="CoreTemperatures" ToRole="Meats" />
+        </EntityType>
+        <EntityType Name="Meat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CoreTemperatureId" Type="Int32" />
+          <Property Name="AnswerId" Type="Int32" />
+          <NavigationProperty Name="Answer" Relationship="Self.FK_Meats_Answers" FromRole="Meats" ToRole="Answers" />
+          <NavigationProperty Name="CoreTemperature" Relationship="Self.FK_Meats_CoreTemperatures" FromRole="Meats" ToRole="CoreTemperatures" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="ExitMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Skill" Relationship="Self.FK_ExitMessages_Skills" FromRole="ExitMessages" ToRole="Skills" />
+        </EntityType>
+        <EntityType Name="HelpMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Skill" Relationship="Self.FK_HelpMessages_Skills" FromRole="HelpMessages" ToRole="Skills" />
+        </EntityType>
+        <EntityType Name="IntentCall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IntentId" Type="Int32" Nullable="false" />
+          <Property Name="CallText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Intent" Relationship="Self.FK_IntentCall_Intents" FromRole="IntentCall" ToRole="Intents" />
+        </EntityType>
+        <EntityType Name="IntentMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IntentId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Intent" Relationship="Self.FK_IntentMessages_Intent" FromRole="IntentMessages" ToRole="Intents" />
+          <NavigationProperty Name="IntentMessagesReads" Relationship="Self.FK_IntentMessagesReads_IntentMessages" FromRole="IntentMessages" ToRole="IntentMessagesReads" />
+        </EntityType>
+        <EntityType Name="IntentMessagesRead">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IntentMessageId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReadSecond" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="IntentMessage" Relationship="Self.FK_IntentMessagesReads_IntentMessages" FromRole="IntentMessagesReads" ToRole="IntentMessages" />
+        </EntityType>
+        <EntityType Name="Intent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShouldEndSession" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="IntentCalls" Relationship="Self.FK_IntentCall_Intents" FromRole="Intents" ToRole="IntentCall" />
+          <NavigationProperty Name="IntentMessages" Relationship="Self.FK_IntentMessages_Intent" FromRole="Intents" ToRole="IntentMessages" />
+          <NavigationProperty Name="Skill" Relationship="Self.FK_Intent_Skills" FromRole="Intents" ToRole="Skills" />
+        </EntityType>
+        <EntityType Name="RequestLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ApplicationId" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequestType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Intent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IntentParam" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Information" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationID" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SkillType" Type="Int32" />
+          <NavigationProperty Name="ExitMessages" Relationship="Self.FK_ExitMessages_Skills" FromRole="Skills" ToRole="ExitMessages" />
+          <NavigationProperty Name="HelpMessages" Relationship="Self.FK_HelpMessages_Skills" FromRole="Skills" ToRole="HelpMessages" />
+          <NavigationProperty Name="Intents" Relationship="Self.FK_Intent_Skills" FromRole="Skills" ToRole="Intents" />
+          <NavigationProperty Name="WelcomeMessages" Relationship="Self.FK_WelcomeMessages_Skills" FromRole="Skills" ToRole="WelcomeMessages" />
+        </EntityType>
+        <EntityType Name="SkillType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WelcomeMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Skill" Relationship="Self.FK_WelcomeMessages_Skills" FromRole="WelcomeMessages" ToRole="Skills" />
+          <NavigationProperty Name="WelcomeMessagesReads" Relationship="Self.FK_WelcomeMessagesReads_WelcomeMessages" FromRole="WelcomeMessages" ToRole="WelcomeMessagesReads" />
+        </EntityType>
+        <EntityType Name="WelcomeMessagesRead">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WelcomeMessageId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReadSecond" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="WelcomeMessage" Relationship="Self.FK_WelcomeMessagesReads_WelcomeMessages" FromRole="WelcomeMessagesReads" ToRole="WelcomeMessages" />
+        </EntityType>
+        <Association Name="FK_Meats_Answers">
+          <End Role="Answers" Type="Self.Answer" Multiplicity="0..1" />
+          <End Role="Meats" Type="Self.Meat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meats">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meats_CoreTemperatures">
+          <End Role="CoreTemperatures" Type="Self.CoreTemperature" Multiplicity="0..1" />
+          <End Role="Meats" Type="Self.Meat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoreTemperatures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meats">
+              <PropertyRef Name="CoreTemperatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExitMessages_Skills">
+          <End Role="Skills" Type="Self.Skill" Multiplicity="1" />
+          <End Role="ExitMessages" Type="Self.ExitMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExitMessages">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HelpMessages_Skills">
+          <End Role="Skills" Type="Self.Skill" Multiplicity="1" />
+          <End Role="HelpMessages" Type="Self.HelpMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HelpMessages">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IntentCall_Intents">
+          <End Role="Intents" Type="Self.Intent" Multiplicity="1" />
+          <End Role="IntentCall" Type="Self.IntentCall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IntentCall">
+              <PropertyRef Name="IntentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IntentMessages_Intent">
+          <End Role="Intents" Type="Self.Intent" Multiplicity="1" />
+          <End Role="IntentMessages" Type="Self.IntentMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IntentMessages">
+              <PropertyRef Name="IntentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IntentMessagesReads_IntentMessages">
+          <End Role="IntentMessages" Type="Self.IntentMessage" Multiplicity="1" />
+          <End Role="IntentMessagesReads" Type="Self.IntentMessagesRead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IntentMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IntentMessagesReads">
+              <PropertyRef Name="IntentMessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Intent_Skills">
+          <End Role="Skills" Type="Self.Skill" Multiplicity="1" />
+          <End Role="Intents" Type="Self.Intent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intents">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WelcomeMessages_Skills">
+          <End Role="Skills" Type="Self.Skill" Multiplicity="1" />
+          <End Role="WelcomeMessages" Type="Self.WelcomeMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WelcomeMessages">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WelcomeMessagesReads_WelcomeMessages">
+          <End Role="WelcomeMessages" Type="Self.WelcomeMessage" Multiplicity="1" />
+          <End Role="WelcomeMessagesReads" Type="Self.WelcomeMessagesRead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WelcomeMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WelcomeMessagesReads">
+              <PropertyRef Name="WelcomeMessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="AlexaSkillEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="CoreTemperatures" EntityType="Self.CoreTemperature" />
+          <EntitySet Name="Meats" EntityType="Self.Meat" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="ExitMessages" EntityType="Self.ExitMessage" />
+          <EntitySet Name="HelpMessages" EntityType="Self.HelpMessage" />
+          <EntitySet Name="IntentCalls" EntityType="Self.IntentCall" />
+          <EntitySet Name="IntentMessages" EntityType="Self.IntentMessage" />
+          <EntitySet Name="IntentMessagesReads" EntityType="Self.IntentMessagesRead" />
+          <EntitySet Name="Intents" EntityType="Self.Intent" />
+          <EntitySet Name="RequestLogs" EntityType="Self.RequestLog" />
+          <EntitySet Name="Skills" EntityType="Self.Skill" />
+          <EntitySet Name="SkillTypes" EntityType="Self.SkillType" />
+          <EntitySet Name="WelcomeMessages" EntityType="Self.WelcomeMessage" />
+          <EntitySet Name="WelcomeMessagesReads" EntityType="Self.WelcomeMessagesRead" />
+          <AssociationSet Name="FK_Meats_Answers" Association="Self.FK_Meats_Answers">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="Meats" EntitySet="Meats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meats_CoreTemperatures" Association="Self.FK_Meats_CoreTemperatures">
+            <End Role="CoreTemperatures" EntitySet="CoreTemperatures" />
+            <End Role="Meats" EntitySet="Meats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExitMessages_Skills" Association="Self.FK_ExitMessages_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="ExitMessages" EntitySet="ExitMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HelpMessages_Skills" Association="Self.FK_HelpMessages_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="HelpMessages" EntitySet="HelpMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IntentCall_Intents" Association="Self.FK_IntentCall_Intents">
+            <End Role="Intents" EntitySet="Intents" />
+            <End Role="IntentCall" EntitySet="IntentCalls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IntentMessages_Intent" Association="Self.FK_IntentMessages_Intent">
+            <End Role="Intents" EntitySet="Intents" />
+            <End Role="IntentMessages" EntitySet="IntentMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IntentMessagesReads_IntentMessages" Association="Self.FK_IntentMessagesReads_IntentMessages">
+            <End Role="IntentMessages" EntitySet="IntentMessages" />
+            <End Role="IntentMessagesReads" EntitySet="IntentMessagesReads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Intent_Skills" Association="Self.FK_Intent_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="Intents" EntitySet="Intents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WelcomeMessages_Skills" Association="Self.FK_WelcomeMessages_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="WelcomeMessages" EntitySet="WelcomeMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WelcomeMessagesReads_WelcomeMessages" Association="Self.FK_WelcomeMessagesReads_WelcomeMessages">
+            <End Role="WelcomeMessages" EntitySet="WelcomeMessages" />
+            <End Role="WelcomeMessagesReads" EntitySet="WelcomeMessagesReads" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlexaSkillStoreContainer" CdmEntityContainer="AlexaSkillEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="AlexaSkill.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Answert" ColumnName="Answert" />
+                <ScalarProperty Name="SessionTerm" ColumnName="SessionTerm" />
+                <ScalarProperty Name="ShouldEndSession" ColumnName="ShouldEndSession" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoreTemperatures">
+            <EntityTypeMapping TypeName="AlexaSkill.CoreTemperature">
+              <MappingFragment StoreEntitySet="CoreTemperatures">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DefaultDegree" ColumnName="DefaultDegree" />
+                <ScalarProperty Name="DefaultMinDegree" ColumnName="DefaultMinDegree" />
+                <ScalarProperty Name="DefaultMaxDegree" ColumnName="DefaultMaxDegree" />
+                <ScalarProperty Name="RareDegree" ColumnName="RareDegree" />
+                <ScalarProperty Name="RareMinDegree" ColumnName="RareMinDegree" />
+                <ScalarProperty Name="RareMaxDegree" ColumnName="RareMaxDegree" />
+                <ScalarProperty Name="MediumDegree" ColumnName="MediumDegree" />
+                <ScalarProperty Name="MediumMinDegree" ColumnName="MediumMinDegree" />
+                <ScalarProperty Name="MediumMaxDegree" ColumnName="MediumMaxDegree" />
+                <ScalarProperty Name="DoneDegree" ColumnName="DoneDegree" />
+                <ScalarProperty Name="DoneMinDegree" ColumnName="DoneMinDegree" />
+                <ScalarProperty Name="DoneMaxDegree" ColumnName="DoneMaxDegree" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meats">
+            <EntityTypeMapping TypeName="AlexaSkill.Meat">
+              <MappingFragment StoreEntitySet="Meats">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CoreTemperatureId" ColumnName="CoreTemperatureId" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="AlexaSkill.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="AlexaSkill.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="AlexaSkill.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="AlexaSkill.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="AlexaSkill.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExitMessages">
+            <EntityTypeMapping TypeName="AlexaSkill.ExitMessage">
+              <MappingFragment StoreEntitySet="ExitMessages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HelpMessages">
+            <EntityTypeMapping TypeName="AlexaSkill.HelpMessage">
+              <MappingFragment StoreEntitySet="HelpMessages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IntentCalls">
+            <EntityTypeMapping TypeName="AlexaSkill.IntentCall">
+              <MappingFragment StoreEntitySet="IntentCall">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IntentId" ColumnName="IntentId" />
+                <ScalarProperty Name="CallText" ColumnName="CallText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IntentMessages">
+            <EntityTypeMapping TypeName="AlexaSkill.IntentMessage">
+              <MappingFragment StoreEntitySet="IntentMessages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IntentId" ColumnName="IntentId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IntentMessagesReads">
+            <EntityTypeMapping TypeName="AlexaSkill.IntentMessagesRead">
+              <MappingFragment StoreEntitySet="IntentMessagesReads">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IntentMessageId" ColumnName="IntentMessageId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ReadSecond" ColumnName="ReadSecond" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intents">
+            <EntityTypeMapping TypeName="AlexaSkill.Intent">
+              <MappingFragment StoreEntitySet="Intents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShouldEndSession" ColumnName="ShouldEndSession" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestLogs">
+            <EntityTypeMapping TypeName="AlexaSkill.RequestLog">
+              <MappingFragment StoreEntitySet="RequestLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RequestTime" ColumnName="RequestTime" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="Intent" ColumnName="Intent" />
+                <ScalarProperty Name="IntentParam" ColumnName="IntentParam" />
+                <ScalarProperty Name="Information" ColumnName="Information" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="AlexaSkill.Skill">
+              <MappingFragment StoreEntitySet="Skills">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SkillType" ColumnName="SkillType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkillTypes">
+            <EntityTypeMapping TypeName="AlexaSkill.SkillType">
+              <MappingFragment StoreEntitySet="SkillTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WelcomeMessages">
+            <EntityTypeMapping TypeName="AlexaSkill.WelcomeMessage">
+              <MappingFragment StoreEntitySet="WelcomeMessages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WelcomeMessagesReads">
+            <EntityTypeMapping TypeName="AlexaSkill.WelcomeMessagesRead">
+              <MappingFragment StoreEntitySet="WelcomeMessagesReads">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WelcomeMessageId" ColumnName="WelcomeMessageId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ReadSecond" ColumnName="ReadSecond" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="AlexaSkill.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

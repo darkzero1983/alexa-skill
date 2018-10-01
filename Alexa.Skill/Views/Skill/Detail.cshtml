@@ -1,0 +1,117 @@
+﻿@using Alexa.Skill.Models.Skills
+@model SkillDetailModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+@section SkillNameMenu{
+	@Html.Action("SkillNameMenu", "Home", new { skillId = Model.Id })
+}
+@section MainMenu{
+	@Html.Action("MainMenu", "Home", new { skillId = Model.Id })
+}
+
+@switch (Model.SkillType)
+{
+	case SkillType.InformationSkill:
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-success ">
+					<div class="panel-heading text-center"><h2>Intents</h2></div>
+					<div class="panel-body">
+						Hier kannst du die Intents von deinem Skill bearbeiten
+					</div>
+					<div class="panel-body text-right" style="border-top:1px solid #ddd">
+						<a href="@Url.Action("Intents", "Skill", new { id = Model.Id})" class="btn btn-success">Bearbeiten</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="panel panel-success ">
+					<div class="panel-heading text-center"><h2>Welcome Message</h2></div>
+					<div class="panel-body">
+						Hier kannst du die Welcome Message von deinem Skill bearbeiten
+					</div>
+					<div class="panel-body text-right" style="border-top:1px solid #ddd">
+						<a href="@Url.Action("WelcomeMessages", "Skill", new { id = Model.Id})" class="btn btn-success">Bearbeiten</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-success ">
+					<div class="panel-heading text-center"><h2>Statistiken</h2></div>
+					<div class="panel-body">
+						Hier kannst du die Statistiken von deinem Skill sehen
+					</div>
+					<div class="panel-body text-right" style="border-top:1px solid #ddd">
+						<a href="@Url.Action("Index", "Statistic", new { id = Model.Id})" class="btn btn-success">Anzeigen</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-success ">
+					<div class="panel-heading text-center"><h2>Konfigurationen</h2></div>
+					<div class="panel-body">
+
+					</div>
+					<div class="panel-body text-right" style="border-top:1px solid #ddd">
+						<a href="@Url.Action("Index", "SkillConfig", new { id = Model.Id})" class="btn btn-success">Anzeigen</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		break;
+	case SkillType.CoreTemperature:
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-success ">
+					<div class="panel-heading text-center"><h2>Kerntemperaturen</h2></div>
+					<div class="panel-body">
+						Hier kannst du die Kerntemperaturen von deinem Skill sehen
+					</div>
+					<div class="panel-body text-right" style="border-top:1px solid #ddd">
+						<a href="@Url.Action("Overview", "CoreTemperature", new { skillId = Model.Id})" class="btn btn-success">Anzeigen</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-success ">
+					<div class="panel-heading text-center"><h2>Antworten</h2></div>
+					<div class="panel-body">
+						Hier kannst du die Antworten von deinem Skill sehen
+					</div>
+					<div class="panel-body text-right" style="border-top:1px solid #ddd">
+						<a href="@Url.Action("AnswerOverview", "CoreTemperature", new { skillId = Model.Id})" class="btn btn-success">Anzeigen</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-success ">
+					<div class="panel-heading text-center"><h2>Aufrufe</h2></div>
+					<div class="panel-body">
+						Hier kannst du die Aufrufe von deinem Skill sehen
+					</div>
+					<div class="panel-body text-right" style="border-top:1px solid #ddd">
+						<a href="@Url.Action("UserCallOverview", "CoreTemperature", new { skillId = Model.Id})" class="btn btn-success">Anzeigen</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-success ">
+					<div class="panel-heading text-center"><h2>Statistiken</h2></div>
+					<div class="panel-body">
+						Hier kannst du die Statistiken von deinem Skill sehen
+					</div>
+					<div class="panel-body text-right" style="border-top:1px solid #ddd">
+						<a href="@Url.Action("Index", "Statistic", new { id = Model.Id})" class="btn btn-success">Anzeigen</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		break;
+}
+
+
